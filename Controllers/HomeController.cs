@@ -41,6 +41,15 @@ namespace AdminBlog.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> DeleteCategory(int? id)
+        {
+            Category category = await _content.Categories.FindAsync(id);
+            _content.Remove(category);
+            await _content.SaveChangesAsync();
+            return RedirectToAction(nameof(Category));
+
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
