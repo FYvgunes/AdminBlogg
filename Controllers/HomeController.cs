@@ -23,7 +23,11 @@ namespace AdminBlog.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Category()
+        {
+            return View();
+        }
+        public IActionResult Author()
         {
             return View();
         }
