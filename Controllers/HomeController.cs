@@ -12,10 +12,19 @@ namespace AdminBlog.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly BlogContent _content;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,BlogContent content)
         {
             _logger = logger;
+            _content = content;
+        }
+        public async Task<IActionResult> AddCategory(Category category)
+        {
+            await _content.AddAsync(category);
+            await _content.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Category));
         }
 
         public IActionResult Index()
@@ -25,7 +34,8 @@ namespace AdminBlog.Controllers
 
         public IActionResult Category()
         {
-            return View();
+            List<Category> list = _content.Categories.ToList();
+            return View(list);
         }
         public IActionResult Author()
         {

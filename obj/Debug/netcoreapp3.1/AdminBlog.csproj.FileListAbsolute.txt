@@ -142,3 +142,4 @@ C:\Users\Veysel\source\repos\AdminBlog\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft
 C:\Users\Veysel\source\repos\AdminBlog\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Veysel\source\repos\AdminBlog\obj\Debug\netcoreapp3.1\AdminBlog.csproj.CoreCompileInputs.cache
 C:\Users\Veysel\source\repos\AdminBlog\obj\Debug\netcoreapp3.1\AdminBlog.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Veysel\source\repos\AdminBlog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Author.cshtml.g.cs
