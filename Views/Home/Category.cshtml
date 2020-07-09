@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AdminBlog.Models.Category>
+﻿
 @{
     ViewData["Title"] = "Category";
 }
@@ -9,6 +9,8 @@
     <th scope="col">Id</th>
     <th scope="col">Name</th>
     <th scope="col"></th>
+    <th scope="col"></th>
+
     </thead>
     <tbody>
         @foreach (var item in Model)
@@ -16,8 +18,11 @@
             <tr>
                 <th scope="row">@item.CategoryID</th>
                 <td>@item.CategoryName</td>
-                <td><a class="btn btn-danger" asp-route-id="@item.CategoryID" asp-action="DeleteCategory">Sil</a></td>
-                <td><button class="btn btn-success" onclick="Updataform(@item.CategoryID)" type="button">Güncelle</button></td>
+                <td>
+                    <a class="btn btn-danger" asp-route-id="@item.CategoryID" asp-action="DeleteCategory">Sil</a>
+                    <button class="btn btn-success" onclick="updateForm(@item.CategoryID)" type="button">Güncelle</button>
+                </td>
+
 
             </tr>
 
@@ -36,14 +41,14 @@
             <form method="post" action="/Home/AddCategory">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="hidden" name="id" id="id" class="form-control" value="" />
-                        <input type="Text" name="CategoryName" id="Name" class="form-control" value="" />
+                        <input type="hidden" id="id" name="id" class="form-control" value="" />
+                        <input type="Text" id="Name"name="CategoryName" class="form-control" value="" />
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                    <button type="submit" id=savebtn class="btn btn-primary">Ekle</button>
-                    <button type="submit" id="updateBtn" class="btn btn-primary">Güncelle</button>
+                    <button type="submit" id="SaveBtn" class="btn btn-primary">Ekle</button>
+                    <button type="submit" id="UpdateBtn" class="btn btn-primary">Güncelle</button>
                 </div>
             </form>
         </div>
@@ -51,18 +56,17 @@
 </div>
 @section Scripts{
     <script>
-        function Updataform(id) {
-            fetch('/Home/CategoryDetails?id=' + id)
+        function updateForm(id) {
+            fetch('/Home/CategoryDetails?id =' + id)
                 .then(res => res.json())
                 .then(res => {
                     $('#id').val(res.id)
                     $('#Name').val(res.name)
                 })
-            $('#savebtn').hide();
+            $('#SaveBtn').hide();
             $('#CategoryModal').modal('show');
 
         }
-
-
     </script>
+
 }
