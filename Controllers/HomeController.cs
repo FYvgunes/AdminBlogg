@@ -21,7 +21,15 @@ namespace AdminBlog.Controllers
         }
         public async Task<IActionResult> AddCategory(Category category)
         {
-            await _content.AddAsync(category);
+            if(category.CategoryID==0)
+            {
+                await _content.AddAsync(category);
+               
+            }
+            else
+            {
+                _content.Update(category);
+            }
             await _content.SaveChangesAsync();
 
             return RedirectToAction(nameof(Category));
@@ -40,6 +48,11 @@ namespace AdminBlog.Controllers
         public IActionResult Author()
         {
             return View();
+        }
+        public async Task<IActionResult> CategoryDetails(int id)
+        {
+            var Category = await _content.Categories.FindAsync(id);
+            return View(Category);
         }
         public async Task<IActionResult> DeleteCategory(int? id)
         {
