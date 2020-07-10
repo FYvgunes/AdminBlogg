@@ -27,7 +27,7 @@ namespace AdminBlog.Controllers
             }
             else
             {
-                
+                _content.Update(category);
             }
           
             await _content.SaveChangesAsync();

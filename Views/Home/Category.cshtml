@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<AdminBlog.Models.Category>
 @{
     ViewData["Title"] = "Category";
 }
@@ -38,15 +38,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="/Home/AddCategory">
+            <form method="post" action="/Home/AddCategory" autocomplete="off">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="hidden" id="id" name="id" class="form-control" value="" />
-                        <input type="Text" id="Name"name="CategoryName" class="form-control" value="" />
+                        <input type="hidden" id="id" name="id" class="form-control"/>
+                        <input type="Text" id="Name"name="CategoryName" class="form-control"/>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <button type="button" class="btn btn-secondary" onclick="ClearForm()" data-dismiss="modal">Kapat</button>
                     <button type="submit" id="SaveBtn" class="btn btn-primary">Ekle</button>
                     <button type="submit" id="UpdateBtn" class="btn btn-primary">Güncelle</button>
                 </div>
@@ -56,8 +56,9 @@
 </div>
 @section Scripts{
     <script>
+        $(() => ClearForm)
         function updateForm(id) {
-            fetch('/Home/CategoryDetails?id =' + id)
+            fetch('/Home/CategoryDetails?Id =' + id)
                 .then(res => res.json())
                 .then(res => {
                     $('#id').val(res.id)
@@ -66,6 +67,13 @@
             $('#SaveBtn').hide();
             $('#CategoryModal').modal('show');
 
+        }
+        function ClearForm() {
+            $('#id').val(null)
+            $('#Name').val(null)
+            $('#UpdateBtn').show();
+            $('#SaveBtn').show();
+            $('#UpdateBtn').hide();
         }
     </script>
 
